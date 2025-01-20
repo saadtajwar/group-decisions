@@ -69,3 +69,53 @@ resource "aws_cloudwatch_log_group" "lambda" {
   name              = "/aws/lambda/${aws_lambda_function.function.function_name}"
   retention_in_days = 14
 }
+
+resource "aws_apigatewayv2_route" "get_example" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "GET /example/path1"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "post_example" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "POST /example/path2"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "delete_example" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "DELETE /example/path3"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "put_example" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "POST /session"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_iam_policy" "lambda_dynamodb_policy" {
+  name        = "LambdaDynamoDBFullAccess"
+  description = "Policy that grants full access to DynamoDB tables used by Lambda"
+  policy      = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = [
+          "dynamodb:*"
+        ]
+        Resource = [
+          aws_dynamodb_table.sessions-table.arn,
+          aws_dynamodb_table.users-table.arn,
+          aws_dynamodb_table.options-table.arn
+        ]
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_attach_dynamodb_policy" {
+  role       = aws_iam_role.lambda_exec.name
+  policy_arn = aws_iam_policy.lambda_dynamodb_policy.arn
+}
