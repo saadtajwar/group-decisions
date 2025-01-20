@@ -14,7 +14,6 @@ const Home = () => {
         const storedName = await AsyncStorage.getItem('username');
         if (storedName) {
           setName(storedName);
-          navigate('/display-pin');
         }
       } catch (error) {
         console.error('Failed to load name from storage:', error);
@@ -24,13 +23,29 @@ const Home = () => {
     checkStoredName();
   }, [navigate]);
 
-  const handleSubmit = async () => {
+
+  const handleJoin = async () => {
     const nameRegex = /^[A-Za-z\s]+$/;
 
     if (name && nameRegex.test(name)) {
       try {
         await AsyncStorage.setItem('username', name);
-        navigate('/display-pin');
+        navigate('/join-session');
+      } catch (error) {
+        Alert.alert('Error', 'Failed to save your name. Please try again.');
+      }
+    } else {
+      Alert.alert('Invalid Name', 'Please enter a valid name with only alphabetic characters.');
+    }
+  };
+
+  const handleHost = async () => {
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    if (name && nameRegex.test(name)) {
+      try {
+        await AsyncStorage.setItem('username', name);
+        navigate('/host-session');
       } catch (error) {
         Alert.alert('Error', 'Failed to save your name. Please try again.');
       }
@@ -49,7 +64,8 @@ const Home = () => {
         value={name}
         onChangeText={setName}
       />
-      <Button title="Submit" onPress={handleSubmit} />
+      <Button title="Join Session" onPress={handleJoin} />
+      <Button title="Host Session" onPress={handleHost} />
     </View>
   );
 };

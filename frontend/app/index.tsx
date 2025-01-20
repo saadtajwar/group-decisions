@@ -1,7 +1,8 @@
 import { NativeRouter, Route, Routes } from 'react-router-native';
 import Home from './components/Home';
-import DisplayPin from './components/DisplayPin';
 import Testing from './components/Testing';
+import JoinSession from './components/JoinSession';
+import HostSession from './components/HostSession';
 
 
 export default function Index() {
@@ -9,7 +10,8 @@ export default function Index() {
     <NativeRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/display-pin" element={<DisplayPin />} />
+        <Route path="/join-session" element={<JoinSession />} />
+        <Route path="/host-session" element={<HostSession />} />
         <Route path="/testing" element={<Testing />} />
       </Routes>
     </NativeRouter>
