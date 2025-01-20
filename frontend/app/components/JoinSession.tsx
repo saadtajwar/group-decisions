@@ -34,7 +34,10 @@ const JoinSession = () => {
                     placeholder="Enter PIN"
                     onChangeText={setPin}
                   />
-            <Button title="Join Session" onPress={handlePinSubmit} />
+            <Link to="/host-session" style={commonStyles.button}>
+                <Button title="Join Session" color='#FFFFFF' onPress={handlePinSubmit} />
+            </Link>
+            
             
         </View>
     )

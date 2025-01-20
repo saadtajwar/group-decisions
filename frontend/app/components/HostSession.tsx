@@ -1,4 +1,4 @@
-import { View, Text, Button, Pressable } from 'react-native';
+import { View, Text, Button, FlatList, Pressable } from 'react-native';
 import { commonStyles } from './styles/commonStyles';
 import { Link, useNavigate } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,9 +15,25 @@ const HostSession = () => {
     <View style={commonStyles.container}>
       <Text style={commonStyles.title}>Your PIN</Text>
       <Text style={commonStyles.pin}>{pin}</Text>
-      <Text>Note: we should add a list / gallery view of current users here that have joined the session</Text>
-      <Link to="/testing">
-        <Button title="Start" onPress={() => navigate("/testing")} />
+      <View style={commonStyles.container}>
+      <FlatList style={commonStyles.flatList}
+        data={[
+          {key: 'Devin'},
+          {key: 'Dan'},
+          {key: 'Dominic'},
+          {key: 'Jackson'},
+          {key: 'James'},
+          {key: 'Joel'},
+          {key: 'John'},
+          {key: 'Jillian'},
+          {key: 'Jimmy'},
+          {key: 'Julie'},
+        ]}
+        renderItem={({item}) => <Text style={commonStyles.item}>{item.key}</Text>}
+      />
+    </View>
+      <Link to="/testing" style={commonStyles.button}>
+        <Button title="Start" color='#FFFFFF' onPress={() => navigate("/testing")}/>
       </Link>
     </View>
   );
