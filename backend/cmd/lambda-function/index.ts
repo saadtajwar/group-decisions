@@ -1,5 +1,6 @@
 import { DynamoDB } from 'aws-sdk';
 import { APIGatewayEvent, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import {v4 as uuidv4} from 'uuid';
 
 const dynamoDb = new DynamoDB.DocumentClient();
 
@@ -10,6 +11,7 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
         'GET /example/path1': handleGetExample,
         'POST /example/path2': handlePostExample,
         'DELETE /example/path3': handleDeleteExample,
+        'POST /session': handleCreateSession,
     };
 
     const routeKey = event.httpMethod + ' ' + event.resource;
@@ -26,6 +28,30 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
 
     return routeHandler(event);
 };
+
+const handleCreateSession = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+    const sessionId = uuidv4();
+    const body = JSON.parse(event.body || '{}');
+    const topic = body.topic;
+    const pin = body.pin;
+
+    const params = {
+        TableName: 'Sessions',
+        Item: {
+            SessionId: sessionId,
+            Pin: pin,
+            Topic: topic,
+        },
+    };
+
+    try {
+        await dynamoDb.put(params).promise();
+        return { statusCode: 200, body: JSON.stringify({params}) };
+    } catch (err) {
+        console.error(err);
+        return { statusCode: 500, body: JSON.stringify({ error: 'Could not create session' }) };
+    }
+}
 
 // Example handler functions
 const handleGetExample = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {

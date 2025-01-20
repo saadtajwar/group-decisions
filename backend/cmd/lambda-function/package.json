@@ -2,6 +2,7 @@
   "dependencies": {
     "@types/aws-lambda": "^8.10.147",
     "@types/aws-sdk": "^2.7.4",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "uuid": "^11.0.5"
   }
 }
