@@ -1,17 +1,19 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "paths": {
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "jsx": "react-jsx", // Use "react-jsx" for React 17+ or React 18+
+    "lib": ["dom", "es2015", "es2016", "es2017"]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "app/components/Dragging.jsx"  ]
 }

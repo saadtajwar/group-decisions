@@ -3,12 +3,6 @@ import { commonStyles } from './styles/commonStyles';
 import { Link, useNavigate } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
-import { PanGestureHandler } from 'react-native-gesture-handler';
 import StatusBar from './StatusBar';
 
 
@@ -24,6 +18,10 @@ const Vote = () => {
     }
   };
 
+  /*
+  Add in (below) a drag and drop for sorting options functionality
+  */
+
   return (
     <>
     <StatusBar title="Vote" showBackButton={true} />
@@ -35,14 +33,6 @@ const Vote = () => {
       <Pressable onPress={resetUsername} style={{ marginTop: 10}}>
         <Text>Reset/clear your stored username by clicking this</Text>
       </Pressable>
-      <FlatList style={commonStyles.flatList}
-              data={[
-                {key: 'Oppenheimer'},
-                {key: 'La La Land'},
-                {key: 'Interstellar'},
-              ]}
-              renderItem={({item}) => <Text style={commonStyles.item}>{item.key}</Text>}
-      />
     </View>
   </>
   );

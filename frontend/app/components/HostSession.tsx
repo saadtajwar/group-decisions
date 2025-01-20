@@ -3,6 +3,7 @@ import { commonStyles } from './styles/commonStyles';
 import { Link, useNavigate } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import StatusBar from './StatusBar';
+import React from 'react';
 
 const generateRandomPin = () => {
     return Math.floor(1000 + Math.random() * 9000).toString();
