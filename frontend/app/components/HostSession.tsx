@@ -32,8 +32,8 @@ const HostSession = () => {
         renderItem={({item}) => <Text style={commonStyles.item}>{item.key}</Text>}
       />
     </View>
-      <Link to="/testing" style={commonStyles.button}>
-        <Button title="Start" color='#FFFFFF' onPress={() => navigate("/testing")}/>
+      <Link to="/vote" style={commonStyles.button}>
+        <Button title="Start" color='#FFFFFF' onPress={() => navigate("/vote")}/>
       </Link>
     </View>
   );
