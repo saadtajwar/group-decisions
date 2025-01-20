@@ -9,6 +9,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { PanGestureHandler } from 'react-native-gesture-handler';
+import StatusBar from './StatusBar';
 
 
 
@@ -24,6 +25,8 @@ const Vote = () => {
   };
 
   return (
+    <>
+    <StatusBar title="Vote" showBackButton={true} />
     <View style={commonStyles.container}>
       <Text style={commonStyles.title}>Vote</Text>
       <Link to="/" style={commonStyles.button}>
@@ -39,8 +42,9 @@ const Vote = () => {
                 {key: 'Interstellar'},
               ]}
               renderItem={({item}) => <Text style={commonStyles.item}>{item.key}</Text>}
-            />
+      />
     </View>
+  </>
   );
 };
 

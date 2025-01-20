@@ -3,6 +3,7 @@ import { commonStyles } from './styles/commonStyles';
 import { Link, useNavigate } from 'react-router-native';
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import StatusBar from './StatusBar';
 
 
 const JoinSession = () => {
@@ -27,6 +28,8 @@ const JoinSession = () => {
 
 
     return (
+      <>
+        <StatusBar title="Join Session" showBackButton={true} />
         <View style={commonStyles.container}>
             <Text style={commonStyles.title}>Please enter your PIN below:</Text>
             <TextInput
@@ -40,6 +43,7 @@ const JoinSession = () => {
             
             
         </View>
+      </>
     )
 };
 

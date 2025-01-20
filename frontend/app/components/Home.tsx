@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, Alert, Image } from 'react-native';
 import { Link, useNavigate } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { commonStyles } from './styles/commonStyles'
+import StatusBar from './StatusBar';
 
 
 const Home = () => {
@@ -56,6 +57,8 @@ const Home = () => {
   };
 
   return (
+    <>
+    <StatusBar title="Home" showBackButton={false} />
     <View style={commonStyles.container}>
       <Image source={require('../../assets/images/decisionsai-logo.png')} style={commonStyles.logo}/>
       <Text style={commonStyles.label}>Enter your name:</Text>
@@ -72,6 +75,7 @@ const Home = () => {
         <Button title="Host Session" color='#FFFFFF' onPress={handleHost} />
       </Link>
     </View>
+  </>
   );
 };
 

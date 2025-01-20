@@ -2,6 +2,7 @@ import { View, Text, Button, FlatList, Pressable } from 'react-native';
 import { commonStyles } from './styles/commonStyles';
 import { Link, useNavigate } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import StatusBar from './StatusBar';
 
 const generateRandomPin = () => {
     return Math.floor(1000 + Math.random() * 9000).toString();
@@ -12,6 +13,8 @@ const HostSession = () => {
   const navigate = useNavigate();
   
   return (
+    <>
+    <StatusBar title="Host Session" showBackButton={true} />
     <View style={commonStyles.container}>
       <Text style={commonStyles.title}>Your PIN</Text>
       <Text style={commonStyles.pin}>{pin}</Text>
@@ -36,6 +39,7 @@ const HostSession = () => {
         <Button title="Start" color='#FFFFFF' onPress={() => navigate("/vote")}/>
       </Link>
     </View>
+  </>
   );
 };
 

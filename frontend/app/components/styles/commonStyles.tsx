@@ -57,4 +57,26 @@ export const commonStyles = StyleSheet.create({
     height: 100,
     objectFit: 'contain',  // Ensures the image keeps its original aspect ratio,
   },
+  statusBar: {
+    width: '100%',
+    height: 50,
+    backgroundColor: '#0070C0', // Blue color matching the existing styles
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  backButton: {
+    position: 'absolute',
+    left: 10,
+    padding: 10,
+  },
+  backButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  statusBarTitle: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
