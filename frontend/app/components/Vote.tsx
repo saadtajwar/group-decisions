@@ -12,7 +12,7 @@ import { PanGestureHandler } from 'react-native-gesture-handler';
 
 
 
-const Testing = () => {
+const Vote = () => {
   const navigate = useNavigate();
 
   const resetUsername = async () => {
@@ -25,7 +25,7 @@ const Testing = () => {
 
   return (
     <View style={commonStyles.container}>
-      <Text style={commonStyles.title}>Testing</Text>
+      <Text style={commonStyles.title}>Vote</Text>
       <Link to="/" style={commonStyles.button}>
         <Button title="Start" color="#FFFFFF" onPress={() => navigate("/")} />
       </Link>
@@ -44,4 +44,4 @@ const Testing = () => {
   );
 };
 
-export default Testing;
+export default Vote;
